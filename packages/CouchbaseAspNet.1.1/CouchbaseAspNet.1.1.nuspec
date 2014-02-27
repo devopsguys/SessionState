@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>CouchbaseAspNet</id>
+    <version>1.1</version>
+    <title>CouchbaseAspNet</title>
+    <authors>Couchbase,  Inc.</authors>
+    <owners>Couchbase,  Inc.</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/couchbaselabs/couchbase-aspnet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Couchbase ASP.NET SessionState and OutputCache Providers.</description>
+    <releaseNotes />
+    <copyright>Copyright 2012 Couchbase, Inc.</copyright>
+    <language />
+    <tags>Couchbase nosql asp.net</tags>
+    <dependencies>
+      <dependency id="CouchbaseNetClient" version="1.1.6" />
+    </dependencies>
+    <references>
+      <reference file="Couchbase.AspNet.dll" />
+    </references>
+  </metadata>
+</package>

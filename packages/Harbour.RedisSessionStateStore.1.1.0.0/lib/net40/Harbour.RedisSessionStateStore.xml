@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Harbour.RedisSessionStateStore</name>
+    </assembly>
+    <members>
+        <member name="T:Harbour.RedisSessionStateStore.RedisSessionStateStoreProvider">
+            <summary>
+            A SessionStateProvider implementation for Redis using the ServiceStack.Redis client.
+            </summary>
+            <example>
+            In your web.config (with the <code>host</code> and <code>clientType</code>
+            attributes being optional):
+            <code>
+            <![CDATA[
+              <system.web>
+                <sessionState mode="Custom" customProvider="RedisSessionStateProvider">
+                  <providers>
+                    <clear />
+                    <add name="RedisSessionStateProvider" 
+                         type="Harbour.RedisSessionStateStore.RedisSessionStateStoreProvider" 
+                         host="localhost:6379" clientType="pooled" />
+                  </providers>
+                </sessionState>
+              </system.web>
+            ]]>
+            </code>
+            If you wish to use a custom <code>IRedisClientsManager</code>, you can 
+            do the following in your <code>Global.asax.cs</code>:
+            <code>
+            <![CDATA[
+              private IRedisClientsManager clientManager;
+             
+              protected void Application_Start()
+              {
+                  // Or use your IoC container to wire this up.
+                  this.clientManager = new PooledRedisClientManager("localhost:6379");
+                  RedisSessionStateStoreProvider.SetClientManager(this.clientManager);
+              }
+             
+              protected void Application_End()
+              {
+                  this.clientManager.Dispose();
+              }
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="M:Harbour.RedisSessionStateStore.RedisSessionStateStoreProvider.SetClientManager(ServiceStack.Redis.IRedisClientsManager)">
+            <summary>
+            Sets the client manager to be used for the session state provider. 
+            This client manager's lifetime will not be managed by the RedisSessionStateProvider.
+            However, if this is not set, a client manager will be created and
+            managed by the RedisSessionStateProvider.
+            </summary>
+            <param name="clientManager"></param>
+        </member>
+        <member name="P:Harbour.RedisSessionStateStore.RedisSessionStateStoreProvider.ClientManager">
+            <summary>
+            Gets the client manager for the provider.
+            </summary>
+        </member>
+    </members>
+</doc>
